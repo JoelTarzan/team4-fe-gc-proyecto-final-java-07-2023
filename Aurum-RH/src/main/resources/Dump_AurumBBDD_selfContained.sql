@@ -223,32 +223,32 @@ INSERT INTO `skills_users` VALUES (1,1,4,1),(2,3,6,1),(3,5,1,0),(4,1,6,1),(5,3,1
 UNLOCK TABLES;
 
 --
--- Table structure for table `subscribed`
+-- Table structure for table `subscriptions`
 --
 
-DROP TABLE IF EXISTS `subscribed`;
+DROP TABLE IF EXISTS `subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subscribed` (
+CREATE TABLE `subscriptions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_open_process` int DEFAULT NULL,
   `id_user` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_open_process` (`id_open_process`),
   KEY `id_user` (`id_user`),
-  CONSTRAINT `subscribed_ibfk_1` FOREIGN KEY (`id_open_process`) REFERENCES `open_processes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `subscribed_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`id_open_process`) REFERENCES `open_processes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `subscriptions_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subscribed`
+-- Dumping data for table `subscriptions`
 --
 
-LOCK TABLES `subscribed` WRITE;
-/*!40000 ALTER TABLE `subscribed` DISABLE KEYS */;
-INSERT INTO `subscribed` VALUES (4,1,3),(5,2,5),(6,3,5),(7,4,3),(8,6,3),(9,5,5);
-/*!40000 ALTER TABLE `subscribed` ENABLE KEYS */;
+LOCK TABLES `subscriptions` WRITE;
+/*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
+INSERT INTO `subscriptions` VALUES (1,1,3),(2,2,5),(3,3,5),(4,4,3),(5,6,3),(6,5,5);
+/*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -297,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-04 17:47:43
+-- Dump completed on 2023-09-04 20:14:26
