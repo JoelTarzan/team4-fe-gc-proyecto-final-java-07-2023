@@ -3,10 +3,12 @@ package com.rest.aurumrh.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.rest.aurumrh.dao.ISubscriptionDAO;
 import com.rest.aurumrh.dto.Subscription;
 
+@Service
 public class SubscriptionServiceImpl implements ISubscriptionService{
 	
 	@Autowired
