@@ -8,7 +8,7 @@ import com.rest.aurumrh.dto.Role;
 import com.rest.aurumrh.dto.Skill;
 import com.rest.aurumrh.dto.User;
 
-public interface IUserDAO extends JpaRepository<User, Integer>{
+public interface IUserDAO extends JpaRepository<User, Integer> {
 
 	// Usuarios ordenados alfabeticamente de forma ASC
 	public List<User> findAllByOrderByNameAsc();
