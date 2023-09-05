@@ -42,6 +42,7 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public void deleteRole(int id) {
 		
+		iRoleDAO.deleteById(id);
 		
 	}
 
