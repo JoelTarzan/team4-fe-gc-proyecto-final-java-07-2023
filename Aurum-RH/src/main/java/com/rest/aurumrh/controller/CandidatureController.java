@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.aurumrh.dto.Candidature;
-import com.rest.aurumrh.dto.User;
 import com.rest.aurumrh.service.CandidatureServiceImpl;
 
 @RestController
