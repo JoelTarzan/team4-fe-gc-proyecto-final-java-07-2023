@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: containers-us-west-33.railway.app    Database: railway
+-- Host: containers-us-west-68.railway.app    Database: railway
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -262,6 +262,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `lastname` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `password` varchar(30) DEFAULT NULL,
   `description` text,
   `rating` enum('0','1','2','3','4','5') NOT NULL,
@@ -284,7 +285,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Joel','Tarzán','Joel123','Lorem ipsum dolor sit amet, consectetur adipiscing','2','Programador Junior','644288331','joeltarzan.es','joeltarzan','JoelTarzan',NULL,3),(2,'Gerard','Fernández','Gerard123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador','644399182','gerardfernandez.es','gerardfernandez','GerardFernandez',NULL,1),(3,'Marco','Santoro','Marco123','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Manager RRHH','644271622','marcosantoro.es','marcosantoro','MarcoSantoro',NULL,2),(4,'Laura','Pérez','Laura123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Desarrollador Web Senior','644123456','lauraperez.es','lauraperez','LauraPerez',NULL,3),(5,'Elena','García','Elena123','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Coordinador RRHH','644987654','elenagarcia.es','elenagarcia','ElenaGarcia',NULL,2),(6,'Carlos','López','Carlos123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador de Sistemas','644567890','carloslopez.es','carloslopez','CarlosLopez',NULL,3);
+INSERT INTO `users` VALUES (1,'Joel','Tarzán','joel@gmail.com','Joel123','Lorem ipsum dolor sit amet, consectetur adipiscing','2','Programador Junior','644288331','joeltarzan.es','joeltarzan','JoelTarzan',NULL,3),(2,'Gerard','Fernández','gerard@gmail.com','Gerard123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador','644399182','gerardfernandez.es','gerardfernandez','GerardFernandez',NULL,1),(3,'Marco','Santoro','marco@gmail.com','Marco123','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Manager RRHH','644271622','marcosantoro.es','marcosantoro','MarcoSantoro',NULL,2),(4,'Laura','Pérez','laura@gmail.com','Laura123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Desarrollador Web Senior','644123456','lauraperez.es','lauraperez','LauraPerez',NULL,3),(5,'Elena','García','elena@gmail.com','Elena123','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Coordinador RRHH','644987654','elenagarcia.es','elenagarcia','ElenaGarcia',NULL,2),(6,'Carlos','López','carlos@gmail.com','Carlos123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador de Sistemas','644567890','carloslopez.es','carloslopez','CarlosLopez',NULL,3);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -297,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-04 20:14:26
+-- Dump completed on 2023-09-05 19:42:52
