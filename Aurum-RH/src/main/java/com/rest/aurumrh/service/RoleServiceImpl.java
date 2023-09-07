@@ -46,4 +46,10 @@ public class RoleServiceImpl implements IRoleService {
 		
 	}
 
+	@Override
+	public Role getRoleByName(String name) {
+
+		return iRoleDAO.findByName(name);
+	}
+
 }

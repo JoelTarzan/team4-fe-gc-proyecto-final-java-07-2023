@@ -9,4 +9,7 @@ import com.rest.aurumrh.dto.Role;
 
 public interface IRoleDAO extends JpaRepository<Role, Integer> {
 	
+		public Role findByName(String name);
+	
 }
+ 
