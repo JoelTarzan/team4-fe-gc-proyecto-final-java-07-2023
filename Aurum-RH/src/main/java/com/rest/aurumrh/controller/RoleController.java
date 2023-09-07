@@ -60,4 +60,10 @@ public class RoleController {
 		
 		roleServiceImpl.deleteRole(id);
 	}
+	
+	@GetMapping("/roles/name/{name}")
+	public Role getRoleByName(@PathVariable(name = "name") String name) {
+		
+		return roleServiceImpl.getRoleByName(name);
+	}
 }
