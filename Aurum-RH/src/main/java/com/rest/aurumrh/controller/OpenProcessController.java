@@ -11,14 +11,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rest.aurumrh.dto.Candidature;
 import com.rest.aurumrh.dto.OpenProcess;
+import com.rest.aurumrh.dto.User;
+import com.rest.aurumrh.service.CandidatureServiceImpl;
 import com.rest.aurumrh.service.OpenProcessServiceImpl;
+import com.rest.aurumrh.service.UserServiceImpl;
 
 @RestController
 public class OpenProcessController {
 
 	@Autowired
 	OpenProcessServiceImpl openProcessServiceImpl;
+	
+	@Autowired
+	UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	CandidatureServiceImpl candidatureServiceImpl;
 
 	@GetMapping("/openprocesses")
 	public List<OpenProcess> getAllOpenProcesses() {
@@ -63,4 +73,48 @@ public class OpenProcessController {
 		
 		openProcessServiceImpl.deleteOpenProcess(id);
 	}
+	
+	@GetMapping("/openprocesses/user/{id}")
+	public List<OpenProcess> getAllOpenProcessesByUser(@PathVariable(name = "id") int id) {
+		
+		User user = userServiceImpl.getUserById(id);
+		
+		return openProcessServiceImpl.getAllOpenProcessesByUser(user);
+	}
+	
+	@GetMapping("/openprocesses/date-asc")
+	public List<OpenProcess> getAllOpenProcessesByDateAsc() {
+		
+		return openProcessServiceImpl.getAllOpenProcessesByDateAsc();
+	}
+	
+	@GetMapping("/openprocesses/date-desc")
+	public List<OpenProcess> getAllOpenProcessesByDateDesc() {
+		
+		return openProcessServiceImpl.getAllOpenProcessesByDateDesc();
+	}
+	
+	@GetMapping("/openprocesses/candidature/{candidatureid}/user/{userid}/date-asc")
+	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateAsc(@PathVariable(name = "candidatureid") int candidatureId,
+		    @PathVariable(name = "userid") int userId) {
+		
+		Candidature candidature = candidatureServiceImpl.getCandidatureById(candidatureId);
+		
+	    User user = userServiceImpl.getUserById(userId);
+		
+		return openProcessServiceImpl.getAllOpenProcessesByCandidatureAndUserByDateAsc(candidature, user);
+	}
+	
+	@GetMapping("/openprocesses/candidature/{candidatureid}/user/{userid}/date-desc")
+	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateDesc(@PathVariable(name = "candidatureid") int candidatureId,
+		    @PathVariable(name = "userid") int userId) {
+		
+		Candidature candidature = candidatureServiceImpl.getCandidatureById(candidatureId);
+		
+	    User user = userServiceImpl.getUserById(userId);
+		
+		return openProcessServiceImpl.getAllOpenProcessesByCandidatureAndUserByDateDesc(candidature, user);
+	}
+	
+	
 }
