@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rest.aurumrh.dao.ISkillUserDAO;
+import com.rest.aurumrh.dto.Skill;
 import com.rest.aurumrh.dto.SkillUser;
+import com.rest.aurumrh.dto.User;
 
 @Service
 public class SkillUserServiceImpl implements ISkillUserService {
@@ -42,5 +44,23 @@ public class SkillUserServiceImpl implements ISkillUserService {
 	public void deleteSkillUser(int id) {
 		
 		iSkillUserDAO.deleteById(id);
+	}
+
+	@Override
+	public List<SkillUser> getAllSkillUserByUser(User user) {
+		
+		return iSkillUserDAO.findAllByUser(user);
+	}
+
+	@Override
+	public List<SkillUser> getAllSkillUserBySkill(Skill skill) {
+		
+		return iSkillUserDAO.findAllBySkill(skill);
+	}
+
+	@Override
+	public List<SkillUser> getAllSkillUserByUserAndSkill(User user, Skill skill) {
+		
+		return iSkillUserDAO.findAllByUserAndSkill(user, skill);
 	}
 }
