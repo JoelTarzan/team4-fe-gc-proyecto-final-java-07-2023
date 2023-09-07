@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rest.aurumrh.dao.IOpenProcessDAO;
+import com.rest.aurumrh.dto.Candidature;
 import com.rest.aurumrh.dto.OpenProcess;
+import com.rest.aurumrh.dto.User;
 
 @Service
 public class OpenProcessServiceImpl implements IOpenProcessService {
@@ -43,4 +45,36 @@ public class OpenProcessServiceImpl implements IOpenProcessService {
 		
 		iOpenProcessDAO.deleteById(id);
 	}
+
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByUser(User user) {
+		
+		return iOpenProcessDAO.findByUser(user);
+	}
+
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByDateAsc() {
+		
+		return iOpenProcessDAO.findAllByOrderByDateAsc();
+	}
+
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByDateDesc() {
+		
+		return iOpenProcessDAO.findAllByOrderByDateDesc();
+	}
+
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateAsc(Candidature candidature, User user) {
+		
+		return iOpenProcessDAO.findByCandidatureAndUserOrderByDateAsc(candidature, user);
+	}
+
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateDesc(Candidature candidature, User user) {
+		
+		return iOpenProcessDAO.findByCandidatureAndUserOrderByDateDesc(candidature, user);
+	}
+	
+
 }
