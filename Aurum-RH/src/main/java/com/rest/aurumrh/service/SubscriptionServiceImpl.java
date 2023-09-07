@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rest.aurumrh.dao.ISubscriptionDAO;
+import com.rest.aurumrh.dto.OpenProcess;
 import com.rest.aurumrh.dto.Subscription;
+import com.rest.aurumrh.dto.User;
 
 @Service
 public class SubscriptionServiceImpl implements ISubscriptionService{
@@ -43,6 +45,18 @@ public class SubscriptionServiceImpl implements ISubscriptionService{
 		
 		iSubscriptionDAO.deleteById(id);
 		
+	}
+
+	@Override
+	public List<Subscription> getAllSubscriptionsByOpenProcess(OpenProcess openProcess) {
+		
+		return iSubscriptionDAO.findByOpenProcess(openProcess);
+	}
+
+	@Override
+	public List<Subscription> getAllSubscriptionsByUser(User user) {
+		
+		return iSubscriptionDAO.findByUser(user);
 	}
 
 }
