@@ -58,4 +58,10 @@ public class SkillController {
 		
 		skillServiceImpl.deleteSkill(id);
 	}
+	
+	@GetMapping("/skills/name/{name}")
+	public Skill getSkillByName(@PathVariable(name = "name") String name) {
+		
+		return skillServiceImpl.getSkillByName(name);
+	}
 }
