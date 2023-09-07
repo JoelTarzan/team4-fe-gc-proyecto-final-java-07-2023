@@ -45,4 +45,10 @@ public class SkillServiceImpl implements ISkillService {
 		
 	}
 
+	@Override
+	public Skill getSkillByName(String name) {
+		
+		return iSkillDAO.findByName(name);
+	}
+
 }

@@ -15,4 +15,7 @@ public interface ISkillService {
 	public Skill updateSkill(Skill skill);
 	
 	public void deleteSkill(int id);
+	
+	//// Busca Skill a partir de un nombre
+	public Skill getSkillByName(String name);
 }
