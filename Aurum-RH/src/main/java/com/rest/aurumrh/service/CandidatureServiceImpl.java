@@ -43,4 +43,58 @@ public class CandidatureServiceImpl implements ICandidatureService {
 		
 		iCandidatureDAO.deleteById(id);
 	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesASC() {
+		
+		return iCandidatureDAO.findAllByOrderByNameAsc();
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesDESC() {
+		
+		return iCandidatureDAO.findAllByOrderByNameDesc();
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesStartingWith(String letters) {
+		
+		return iCandidatureDAO.findByNameStartingWithIgnoreCase(letters);
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesByOrderOpen() {
+		
+		return iCandidatureDAO.findAllByOrderByStateDesc();
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesByOrderClose() {
+		
+		return iCandidatureDAO.findAllByOrderByStateAsc();
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesStartingWithByOrderOpen(String letters) {
+		
+		return iCandidatureDAO.findByNameStartingWithIgnoreCaseOrderByStateDesc(letters);
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesStartingWithByOrderClose(String letters) {
+		
+		return iCandidatureDAO.findByNameStartingWithIgnoreCaseOrderByStateAsc(letters);
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesOpen() {
+		
+		return iCandidatureDAO.findAllByStateTrue();
+	}
+
+	@Override
+	public List<Candidature> getAllCandidaturesClose() {
+		
+		return iCandidatureDAO.findAllByStateFalse();
+	}
 }
