@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.rest.aurumrh.dao.IApplicationDAO;
 import com.rest.aurumrh.dto.Application;
+import com.rest.aurumrh.dto.Candidature;
+import com.rest.aurumrh.dto.User;
 
 @Service
 public class ApplicationServiceImpl implements IApplicationService{
@@ -45,4 +47,21 @@ public class ApplicationServiceImpl implements IApplicationService{
 		
 	}
 
+	@Override
+	public List<Application> getApplicationByUser(User user) {
+		
+		return iApplicationDAO.findAllByUser(user);
+	}
+
+	@Override
+	public List<Application> getApplicationByCandidature(Candidature candidature) {
+		
+		return iApplicationDAO.findAllByCandidature(candidature);
+	}
+
+	@Override
+	public Application getApplicationByUserAndCandidature(User user, Candidature candidature) {
+		
+		return iApplicationDAO.findAllByUserAndCandidature(user, candidature);
+	}
 }

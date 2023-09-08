@@ -12,13 +12,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.aurumrh.dto.Application;
+import com.rest.aurumrh.dto.Candidature;
+import com.rest.aurumrh.dto.User;
 import com.rest.aurumrh.service.ApplicationServiceImpl;
+import com.rest.aurumrh.service.CandidatureServiceImpl;
+import com.rest.aurumrh.service.UserServiceImpl;
 
 @RestController
 public class ApplicationController {
 
 	@Autowired
 	ApplicationServiceImpl applicationServiceImpl;
+	
+	@Autowired
+	UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	CandidatureServiceImpl candidatureServiceImpl;
 	
 	@GetMapping("/applications")
 	public List<Application> getAllApplications() {
@@ -59,5 +69,31 @@ public class ApplicationController {
 	public void deleteApplication(@PathVariable(name = "id") int id) {
 		
 		applicationServiceImpl.deleteApplication(id);
+	}
+	
+	@GetMapping("/applications/user/{id}")
+	public List<Application> getAllApplicationsByUser(@PathVariable(name = "id") int id) {
+		
+		User user = userServiceImpl.getUserById(id);
+		
+		return applicationServiceImpl.getApplicationByUser(user);
+	}
+	
+	@GetMapping("/applications/candidature/{id}")
+	public List<Application> getAllApplicationsByCandidature(@PathVariable(name = "id") int id) {
+		
+		Candidature candidature = candidatureServiceImpl.getCandidatureById(id);
+		
+		return applicationServiceImpl.getApplicationByCandidature(candidature);
+	}
+	
+	@GetMapping("/applications/user/{userid}/candidature/{candidatureid}")
+	public Application getAllApplicationsByCandidature(@PathVariable(name = "userid") int userid, @PathVariable(name = "candidatureid") int candidatureid) {
+		
+		User user = userServiceImpl.getUserById(userid);
+		
+		Candidature candidature = candidatureServiceImpl.getCandidatureById(candidatureid);
+		
+		return applicationServiceImpl.getApplicationByUserAndCandidature(user, candidature);
 	}
 }
