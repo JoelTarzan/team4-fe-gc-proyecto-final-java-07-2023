@@ -64,6 +64,12 @@ public class UserServiceImpl implements IUserService {
 
 		return iUserDAO.findAllByOrderByNameDesc();
 	}
+	
+	@Override
+	public List<User> getAllUserOrderByRole() {
+		
+		return iUserDAO.findAllByOrderByRole();
+	}
 
 	@Override
 	public List<User> getAllUsersStartingWith(String letters) {
