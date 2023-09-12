@@ -25,12 +25,12 @@ import com.rest.aurumrh.jwt.JWTAuthenticationFilter;
 public class LibrarySecurityConfig {
 
 	private static final String[] SECURED_URLs = {
-			"/books/**"
+			"/candidatures/**"
 	};
 
 	private static final String[] UN_SECURED_URLs = {
-			//"/books/all",
-			"/books/book/{id}",
+			"/**",
+			"/candidatures",
 			"/users/**",
 			"/login/**"
 	};
