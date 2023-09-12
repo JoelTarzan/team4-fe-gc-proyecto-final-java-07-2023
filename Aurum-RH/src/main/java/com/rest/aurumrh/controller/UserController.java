@@ -2,8 +2,11 @@ package com.rest.aurumrh.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.rest.aurumrh.dto.Role;
 import com.rest.aurumrh.dto.Skill;
 import com.rest.aurumrh.dto.SkillUser;
 import com.rest.aurumrh.dto.User;
+import com.rest.aurumrh.exception.UserAlreadyExistsException;
 import com.rest.aurumrh.service.RoleServiceImpl;
 import com.rest.aurumrh.service.SkillUserServiceImpl;
 import com.rest.aurumrh.service.UserServiceImpl;
@@ -31,7 +36,10 @@ public class UserController {
 
 	@Autowired
 	SkillUserServiceImpl skillUserServiceImpl;
-
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+		
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
 
@@ -46,7 +54,13 @@ public class UserController {
 
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
-
+		Optional<User> userFound = userServiceImpl.getUserByEmail(user.getEmail());
+		
+		if (userFound.isPresent()) {
+			throw new UserAlreadyExistsException("Ya existe un usuario con este email.", HttpStatus.FOUND.value());
+		}
+		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userServiceImpl.createUser(user);
 	}
 
@@ -81,6 +95,13 @@ public class UserController {
 	public void deleteUser(@PathVariable(name = "id") int id) {
 
 		userServiceImpl.deleteUser(id);
+	}
+
+	// Buscar usuario por email
+	@GetMapping("/users/email/{email}")
+	public Optional<User> getUserByEmail(@PathVariable(name = "email") String email) {
+
+		return userServiceImpl.getUserByEmail(email);
 	}
 
 	// Usuarios ordenados alfabeticamente de forma ASC
@@ -159,11 +180,11 @@ public class UserController {
 
 		Role candidateRole = roleServiceImpl.getRoleById(3);
 		List<SkillUser> skillsUsers = new ArrayList<SkillUser>();
-		
+
 		for (Skill skill : skills) {
 			skillsUsers.addAll(skillUserServiceImpl.getAllSkillUserBySkill(skill));
 		}
-		
+
 		return userServiceImpl.getAllUsersByRoleBySkillsUsersStartingWith(candidateRole, letters, skillsUsers);
 	}
 }

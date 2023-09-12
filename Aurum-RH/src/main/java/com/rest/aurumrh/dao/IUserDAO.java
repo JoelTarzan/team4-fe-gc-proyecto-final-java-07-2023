@@ -1,6 +1,7 @@
 package com.rest.aurumrh.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.rest.aurumrh.dto.Role;
@@ -8,6 +9,9 @@ import com.rest.aurumrh.dto.SkillUser;
 import com.rest.aurumrh.dto.User;
 
 public interface IUserDAO extends JpaRepository<User, Integer> {
+
+	// Buscar usuario por email
+	public Optional<User> findByEmail(String email);
 
 	// Usuarios ordenados alfabeticamente de forma ASC
 	public List<User> findAllByOrderByNameAsc();
