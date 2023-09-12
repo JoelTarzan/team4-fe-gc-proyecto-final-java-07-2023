@@ -27,6 +27,9 @@ public interface IUserService {
 
 	// Users ordenados alfabeticamente DESC
 	public List<User> getAllUsersDESC();
+	
+	// Users ordenados por rol
+	public List<User> getAllUserOrderByRole();
 
 	// Users que empiezan por X letras
 	public List<User> getAllUsersStartingWith(String letters);

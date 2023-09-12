@@ -18,6 +18,9 @@ public interface IUserDAO extends JpaRepository<User, Integer> {
 
 	// Usuarios ordenados alfabeticamente de forma DESC
 	public List<User> findAllByOrderByNameDesc();
+	
+	// Usuarios ordenados por rol
+	public List<User> findAllByOrderByRole();
 
 	// Buscar usuarios que empiecen por X letras
 	public List<User> findByNameStartingWithIgnoreCase(String letters);
