@@ -36,10 +36,10 @@ public class UserController {
 
 	@Autowired
 	SkillUserServiceImpl skillUserServiceImpl;
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
-		
+
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
 
@@ -55,11 +55,11 @@ public class UserController {
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
 		Optional<User> userFound = userServiceImpl.getUserByEmail(user.getEmail());
-		
+
 		if (userFound.isPresent()) {
 			throw new UserAlreadyExistsException("Ya existe un usuario con este email.", HttpStatus.FOUND.value());
 		}
-		
+
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userServiceImpl.createUser(user);
 	}
@@ -118,6 +118,13 @@ public class UserController {
 		return userServiceImpl.getAllUsersDESC();
 	}
 
+	// Usuarios ordenados por rol
+	@GetMapping("/users/role")
+	public List<User> getAllUserOrderByRole() {
+
+		return userServiceImpl.getAllUserOrderByRole();
+	}
+
 	// Buscar usuarios que empiecen por X letras
 	@GetMapping("/users/search/{letters}")
 	public List<User> getAllUsersStartingWith(@PathVariable(name = "letters") String letters) {
@@ -129,7 +136,7 @@ public class UserController {
 	@PostMapping("/users/role/{rolename}/name-asc")
 	public List<User> getAllUsersByRoleASC(@PathVariable(name = "rolename") String rolename) {
 		Role role = roleServiceImpl.getRoleByName(rolename);
-		
+
 		return userServiceImpl.getAllUsersByRoleASC(role);
 	}
 
@@ -137,7 +144,7 @@ public class UserController {
 	@PostMapping("/users/role/{rolename}/name-desc")
 	public List<User> getAllUsersByRoleDESC(@PathVariable(name = "rolename") String rolename) {
 		Role role = roleServiceImpl.getRoleByName(rolename);
-		
+
 		return userServiceImpl.getAllUsersByRoleDESC(role);
 	}
 
@@ -145,7 +152,7 @@ public class UserController {
 	@PostMapping("/users/role/{rolename}/search/{letters}")
 	public List<User> getAllUsersByRoleStartingWith(@PathVariable(name = "rolename") String rolename, @PathVariable(name = "letters") String letters) {
 		Role role = roleServiceImpl.getRoleByName(rolename);
-		
+
 		return userServiceImpl.getAllUsersByRoleStartingWith(role, letters);
 	}
 
