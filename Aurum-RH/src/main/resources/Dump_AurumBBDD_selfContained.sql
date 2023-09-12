@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: containers-us-west-33.railway.app    Database: railway
+-- Host: containers-us-west-185.railway.app    Database: railway
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -43,7 +43,7 @@ CREATE TABLE `applications` (
 
 LOCK TABLES `applications` WRITE;
 /*!40000 ALTER TABLE `applications` DISABLE KEYS */;
-INSERT INTO `applications` VALUES (1,1,1,NULL),(2,1,2,1),(3,4,3,2),(4,1,3,NULL),(5,6,6,5),(6,4,4,6);
+INSERT INTO `applications` VALUES (1,4,1,NULL),(2,4,2,2),(3,7,3,3),(4,3,3,NULL),(5,7,6,4),(6,4,4,6);
 /*!40000 ALTER TABLE `applications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `candidatures` (
 
 LOCK TABLES `candidatures` WRITE;
 /*!40000 ALTER TABLE `candidatures` DISABLE KEYS */;
-INSERT INTO `candidatures` VALUES (1,'Candidatura X','Reus','2023-12-04','Jornada completa',22,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,5),(2,'Candidatura Y','Tarragona','2023-12-20','Media jornada',15,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',0,5),(3,'Candidatura Z','Barcelona','2023-12-31','Jornada completa',36,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,3),(4,'Candidatura A','Girona','2023-12-15','Jornada completa',25,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',0,3),(5,'Candidatura B','Lleida','2023-11-25','Media jornada',18,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,5),(6,'Candidatura C','Tarragona','2023-11-10','Jornada completa',30,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,3);
+INSERT INTO `candidatures` VALUES (1,'Candidatura X','Reus','2023-12-04','Jornada completa',22,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,2),(2,'Candidatura Y','Tarragona','2023-12-20','Media jornada',15,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',0,6),(3,'Candidatura Z','Barcelona','2023-12-31','Jornada completa',36,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,6),(4,'Candidatura A','Girona','2023-12-15','Jornada completa',25,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',0,8),(5,'Candidatura B','Lleida','2023-11-25','Media jornada',18,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,2),(6,'Candidatura C','Tarragona','2023-11-10','Jornada completa',30,'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',1,6);
 /*!40000 ALTER TABLE `candidatures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `open_processes` (
 
 LOCK TABLES `open_processes` WRITE;
 /*!40000 ALTER TABLE `open_processes` DISABLE KEYS */;
-INSERT INTO `open_processes` VALUES (1,'Entregar CV','2023-11-10',1,1,2),(2,'Entrevista','2023-11-23',0,4,3),(3,'Entrevista Técnica','2023-11-28',1,6,4),(4,'Prueba de habilidades','2023-12-05',0,1,1),(5,'Segunda entrevista','2023-12-15',1,6,6),(6,'Evaluación de aptitud','2023-12-20',1,4,4);
+INSERT INTO `open_processes` VALUES (1,'Entregar CV','2023-11-10',1,3,1),(2,'Entrevista','2023-11-23',0,4,2),(3,'Entrevista Técnica','2023-11-28',1,7,3),(4,'Prueba de habilidades','2023-12-05',0,7,6),(5,'Segunda entrevista','2023-12-15',1,9,5),(6,'Evaluación de aptitud','2023-12-20',1,4,4);
 /*!40000 ALTER TABLE `open_processes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `skills_users` (
 
 LOCK TABLES `skills_users` WRITE;
 /*!40000 ALTER TABLE `skills_users` DISABLE KEYS */;
-INSERT INTO `skills_users` VALUES (1,1,4,1),(2,3,6,1),(3,5,1,0),(4,1,6,1),(5,3,1,1),(6,5,4,0);
+INSERT INTO `skills_users` VALUES (1,1,4,1),(2,3,3,1),(3,5,3,0),(4,1,7,1),(5,3,9,1),(6,5,7,0);
 /*!40000 ALTER TABLE `skills_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `subscriptions` (
 
 LOCK TABLES `subscriptions` WRITE;
 /*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
-INSERT INTO `subscriptions` VALUES (1,1,3),(2,2,5),(3,3,5),(4,4,3),(5,6,3),(6,5,5);
+INSERT INTO `subscriptions` VALUES (1,1,2),(2,2,2),(3,3,6),(4,4,6),(5,6,8),(6,5,8);
 /*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +262,8 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `lastname` varchar(50) DEFAULT NULL,
-  `password` varchar(30) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `description` text,
   `rating` enum('0','1','2','3','4','5') NOT NULL,
   `title` varchar(50) DEFAULT NULL,
@@ -275,7 +276,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `id_role` (`id_role`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +285,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Joel','Tarzán','Joel123','Lorem ipsum dolor sit amet, consectetur adipiscing','2','Programador Junior','644288331','joeltarzan.es','joeltarzan','JoelTarzan',NULL,3),(2,'Gerard','Fernández','Gerard123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador','644399182','gerardfernandez.es','gerardfernandez','GerardFernandez',NULL,1),(3,'Marco','Santoro','Marco123','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Manager RRHH','644271622','marcosantoro.es','marcosantoro','MarcoSantoro',NULL,2),(4,'Laura','Pérez','Laura123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Desarrollador Web Senior','644123456','lauraperez.es','lauraperez','LauraPerez',NULL,3),(5,'Elena','García','Elena123','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Coordinador RRHH','644987654','elenagarcia.es','elenagarcia','ElenaGarcia',NULL,2),(6,'Carlos','López','Carlos123','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador de Sistemas','644567890','carloslopez.es','carloslopez','CarlosLopez',NULL,3);
+INSERT INTO `users` VALUES (1,'Admin','Admin','admin@gmail.com','$2a$10$AZGSMmfdaal5J0yaiUWPVuctLi8MC/ixPlNs40hh3AB9BaIOqL.xW','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Admin','644278331','admin.es','admin','admin',NULL,1),(2,'Rrhh','Rrhh','rrhh@gmail.com','$2a$10$EBRKBqZISMYlfOGoak.w1e6OSrLlPOqjj8EQRKtpXB7gMi.Poisu2','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Rrhh','634588331','rrhh.es','rrhh','rrhh',NULL,2),(3,'Candidate','Candidate','candidate@gmail.com','$2a$10$bBtuCzGAC/9ev8bAMfgvpeU0TG8A2Hq6ZLrJjWACnP10ivYKc7/hW','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Candidate','844288331','candidate.es','candidate','candidate',NULL,3),(4,'Joel','Tarzán','joel@gmail.com','$2a$10$oK8ddXTp7pmsdr1xGgSnl.ArpxreplwbANoLuM8DGrIW3kQXvgqo2','Lorem ipsum dolor sit amet, consectetur adipiscing','2','Programador Junior','644288331','joeltarzan.es','joeltarzan','JoelTarzan',NULL,3),(5,'Gerard','Fernández','gerard@gmail.com','$2a$10$0uxANwaa.J0xj2oUx3yNLOUZUzekux2DfvN1BBUnLW22LTPbVSyHi','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador','644399182','gerardfernandez.es','gerardfernandez','GerardFernandez',NULL,1),(6,'Marco','Santoro','marco@gmail.com','$2a$10$5Qa0irXi51p04aLOCMBqiuRDNjou5nvxHfZbg6qlnMkYHRLukSU/e','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Manager RRHH','644271622','marcosantoro.es','marcosantoro','MarcoSantoro',NULL,2),(7,'Laura','Pérez','laura@gmail.com','$2a$10$a16sRpFjC8/5o0Vx0vqn4ehW4.h6dAePWjxbfzADMwrteZJUCjOwq','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Desarrollador Web Senior','644123456','lauraperez.es','lauraperez','LauraPerez',NULL,3),(8,'Elena','García','elena@gmail.com','$2a$10$7PCxWLPZo92e3IRG74cSw.ti6Kgdd2je.MU6jMwuIOcsaohLwXP4K','Lorem ipsum dolor sit amet, consectetur adipiscing','4','Coordinador RRHH','644987654','elenagarcia.es','elenagarcia','ElenaGarcia',NULL,2),(9,'Carlos','López','carlos@gmail.com','$2a$10$ApLKaE0Cwnwr0.5Al8omKOHgB0CsdUIo6YBEChNQWU2bwaS16dlGe','Lorem ipsum dolor sit amet, consectetur adipiscing','3','Administrador de Sistemas','644567890','carloslopez.es','carloslopez','CarlosLopez',NULL,3);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -297,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-04 20:14:26
+-- Dump completed on 2023-09-12 12:57:00
