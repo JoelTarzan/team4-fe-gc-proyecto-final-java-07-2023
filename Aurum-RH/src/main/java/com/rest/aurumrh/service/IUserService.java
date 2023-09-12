@@ -1,6 +1,7 @@
 package com.rest.aurumrh.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.rest.aurumrh.dto.Role;
 import com.rest.aurumrh.dto.SkillUser;
@@ -17,6 +18,9 @@ public interface IUserService {
 	public User updateUser(User user);
 
 	public void deleteUser(int id);
+
+	// Buscar usuario por email
+	public Optional<User> getUserByEmail(String email);
 
 	// Users ordenados alfabeticamente ASC
 	public List<User> getAllUsersASC();

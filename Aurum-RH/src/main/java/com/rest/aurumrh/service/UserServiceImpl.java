@@ -1,6 +1,7 @@
 package com.rest.aurumrh.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,12 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	public Optional<User> getUserByEmail(String email) {
+
+		return iUserDAO.findByEmail(email);
+	}
+
+	@Override
 	public List<User> getAllUsersASC() {
 
 		return iUserDAO.findAllByOrderByNameAsc();
@@ -78,25 +85,25 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<User> getAllUsersByRoleStartingWith(Role role, String letters) {
-		
+
 		return iUserDAO.findByRoleAndNameStartingWithIgnoreCase(role, letters);
 	}
-	
+
 	@Override
 	public List<User> getAllUsersByRoleBySkillsUsersASC(Role role, List<SkillUser> skillsUsers) {
-		
+
 		return iUserDAO.findByRoleAndSkillsUsersInOrderByNameAsc(role, skillsUsers);
 	}
 
 	@Override
 	public List<User> getAllUsersByRoleBySkillsUsersDESC(Role role, List<SkillUser> skillsUsers) {
-		
+
 		return iUserDAO.findByRoleAndSkillsUsersInOrderByNameDesc(role, skillsUsers);
 	}
 
 	@Override
 	public List<User> getAllUsersByRoleBySkillsUsersStartingWith(Role role, String letters, List<SkillUser> skillsUsers) {
-		
+
 		return iUserDAO.findByRoleAndNameStartingWithIgnoreCaseAndSkillsUsersIn(role, letters, skillsUsers);
 	}
 }
