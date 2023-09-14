@@ -133,7 +133,7 @@ public class UserController {
 	}
 
 	// Buscar usuarios por rol y ordenados alfabeticamente de forma ASC
-	@PostMapping("/users/role/{rolename}/name-asc")
+	@GetMapping("/users/role/{rolename}/name-asc")
 	public List<User> getAllUsersByRoleASC(@PathVariable(name = "rolename") String rolename) {
 		Role role = roleServiceImpl.getRoleByName(rolename);
 
@@ -141,7 +141,7 @@ public class UserController {
 	}
 
 	// Buscar usuarios por rol y ordenados alfabeticamente de forma DESC
-	@PostMapping("/users/role/{rolename}/name-desc")
+	@GetMapping("/users/role/{rolename}/name-desc")
 	public List<User> getAllUsersByRoleDESC(@PathVariable(name = "rolename") String rolename) {
 		Role role = roleServiceImpl.getRoleByName(rolename);
 
@@ -149,7 +149,7 @@ public class UserController {
 	}
 
 	// Buscar usuarios por rol y que empiecen por X letras
-	@PostMapping("/users/role/{rolename}/search/{letters}")
+	@GetMapping("/users/role/{rolename}/search/{letters}")
 	public List<User> getAllUsersByRoleStartingWith(@PathVariable(name = "rolename") String rolename, @PathVariable(name = "letters") String letters) {
 		Role role = roleServiceImpl.getRoleByName(rolename);
 
