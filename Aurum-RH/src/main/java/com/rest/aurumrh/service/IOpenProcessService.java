@@ -17,14 +17,18 @@ public interface IOpenProcessService {
 	public OpenProcess updateOpenProcess(OpenProcess openProcess);
 
 	public void deleteOpenProcess(int id);
-	
+
 	public List<OpenProcess> getAllOpenProcessesByUser(User user);
-	
+
 	public List<OpenProcess> getAllOpenProcessesByDateAsc();
-	
+
 	public List<OpenProcess> getAllOpenProcessesByDateDesc();
-	
+
+	public List<OpenProcess> getAllOpenProcessesByUserByDateAsc(User user);
+
+	public List<OpenProcess> getAllOpenProcessesByUserByDateDesc(User user);
+
 	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateAsc(Candidature candidature, User user);
-	
+
 	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateDesc(Candidature candidature, User user);
 }

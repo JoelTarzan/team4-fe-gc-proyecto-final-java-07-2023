@@ -63,6 +63,18 @@ public class OpenProcessServiceImpl implements IOpenProcessService {
 		
 		return iOpenProcessDAO.findAllByOrderByDateDesc();
 	}
+	
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByUserByDateAsc(User user) {
+		
+		return iOpenProcessDAO.findByUserOrderByDateAsc(user);
+	}
+
+	@Override
+	public List<OpenProcess> getAllOpenProcessesByUserByDateDesc(User user) {
+		
+		return iOpenProcessDAO.findByUserOrderByDateDesc(user);
+	}
 
 	@Override
 	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateAsc(Candidature candidature, User user) {
@@ -75,6 +87,4 @@ public class OpenProcessServiceImpl implements IOpenProcessService {
 		
 		return iOpenProcessDAO.findByCandidatureAndUserOrderByDateDesc(candidature, user);
 	}
-	
-
 }
