@@ -9,15 +9,19 @@ import com.rest.aurumrh.dto.OpenProcess;
 import com.rest.aurumrh.dto.User;
 
 public interface IOpenProcessDAO extends JpaRepository<OpenProcess, Integer> {
-	
+
 	public List<OpenProcess> findByUser(User user);
-	
+
 	public List<OpenProcess> findAllByOrderByDateAsc();
-	
+
 	public List<OpenProcess> findAllByOrderByDateDesc();
 	
-	public List<OpenProcess> findByCandidatureAndUserOrderByDateAsc(Candidature candidature, User user);
+	public List<OpenProcess> findByUserOrderByDateAsc(User user);
 	
+	public List<OpenProcess> findByUserOrderByDateDesc(User user);
+
+	public List<OpenProcess> findByCandidatureAndUserOrderByDateAsc(Candidature candidature, User user);
+
 	public List<OpenProcess> findByCandidatureAndUserOrderByDateDesc(Candidature candidature, User user);
 
 }
