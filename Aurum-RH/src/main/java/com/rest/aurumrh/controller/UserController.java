@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-
 import com.rest.aurumrh.dto.Role;
 import com.rest.aurumrh.dto.Skill;
 import com.rest.aurumrh.dto.SkillUser;
@@ -83,7 +81,15 @@ public class UserController {
 		selectedUser.setWeb(user.getWeb());
 		selectedUser.setLinkedin(user.getLinkedin());
 		selectedUser.setGit(user.getGit());
-		selectedUser.setAvatar(user.getAvatar());
+		
+		if (user.getAvatar() != null) {
+		    byte[] avatarBytes = user.getAvatar();
+		    selectedUser.setAvatar(avatarBytes);
+		 
+		} else {
+		    selectedUser.setAvatar(null);
+		}
+
 		selectedUser.setRole(user.getRole());
 
 		updatedUser = userServiceImpl.updateUser(selectedUser);
