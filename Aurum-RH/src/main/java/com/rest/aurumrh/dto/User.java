@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -59,8 +60,9 @@ public class User {
 	@Column(name = "git")
 	private String git;
 
-	@Column(name = "avatar")
-	private Blob avatar;
+	@Lob
+	@Column(name = "avatar", columnDefinition = "BLOB")
+	private byte[] avatar;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Application> applications;
@@ -87,7 +89,7 @@ public class User {
 	}
 
 	public User(int id, String name, String lastname, String email, String password, String description, int rating, String title,
-			String phone, String web, String linkedin, String git, Blob avatar, Role role) {
+			String phone, String web, String linkedin, String git, byte[] avatar, Role role) {
 		this.id = id;
 		this.name = name;
 		this.lastname = lastname;
@@ -201,11 +203,11 @@ public class User {
 		this.git = git;
 	}
 
-	public Blob getAvatar() {
+	public byte[] getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(Blob avatar) {
+	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
 	}
 
