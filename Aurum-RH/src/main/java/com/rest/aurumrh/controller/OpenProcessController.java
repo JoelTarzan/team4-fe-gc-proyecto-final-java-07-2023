@@ -94,6 +94,22 @@ public class OpenProcessController {
 		return openProcessServiceImpl.getAllOpenProcessesByDateDesc();
 	}
 	
+	@GetMapping("/openprocesses/user/{id}/date-asc")
+	public List<OpenProcess> getAllOpenProcessesByUserByDateAsc(@PathVariable(name = "id") int id) {
+		
+		User user = userServiceImpl.getUserById(id);
+		
+		return openProcessServiceImpl.getAllOpenProcessesByUserByDateAsc(user);
+	}
+	
+	@GetMapping("/openprocesses/user/{id}/date-desc")
+	public List<OpenProcess> getAllOpenProcessesByUserByDateDesc(@PathVariable(name = "id") int id) {
+		
+		User user = userServiceImpl.getUserById(id);
+		
+		return openProcessServiceImpl.getAllOpenProcessesByUserByDateDesc(user);
+	}
+	
 	@GetMapping("/openprocesses/candidature/{candidatureid}/user/{userid}/date-asc")
 	public List<OpenProcess> getAllOpenProcessesByCandidatureAndUserByDateAsc(@PathVariable(name = "candidatureid") int candidatureId,
 		    @PathVariable(name = "userid") int userId) {
