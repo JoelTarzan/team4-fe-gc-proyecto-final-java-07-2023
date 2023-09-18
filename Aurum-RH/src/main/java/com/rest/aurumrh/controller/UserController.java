@@ -96,6 +96,22 @@ public class UserController {
 
 		return updatedUser;
 	}
+	
+	@PutMapping("/change-password/{id}")
+	public User changePassword(@PathVariable(name = "id") int id, @RequestBody User user) {
+		
+		User selectedUser = new User();
+		User updatedUser = new User();
+
+		selectedUser = userServiceImpl.getUserById(id);
+		
+		selectedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+		selectedUser.setRating(user.getRating());
+		
+		updatedUser = userServiceImpl.updateUser(selectedUser);
+		
+		return updatedUser;
+	}
 
 	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable(name = "id") int id) {
